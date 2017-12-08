@@ -173,9 +173,24 @@ echo ""
 echo "  Then in the same terminal:"
 echo ""
 echo "    (CMD + click) on the http://localhost:8888?token..... link"
+echo ""
+echo ""
+echo "  To end session cleanly, in the same terminal:"
+echo ""
+echo "    1. Type (Ctrl + C) to kill notebook server and enter 'y' to confirm"
+echo ""
+echo "    2. Then run:"
+echo ""
+echo "         exit"
+echo ""
+echo "    3. Then run: "
+echo ""
+echo "         aws ec2 terminate-instances --instance-ids $INSTANCE"
+
 
 else
 
 echo "Fingerprints do not match"
 
 fi
+
