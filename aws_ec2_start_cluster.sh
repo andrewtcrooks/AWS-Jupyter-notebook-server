@@ -9,17 +9,22 @@
 
 # CHANGE THE PARAMETERS BELOW TO FIT YOUR PROJECT
 KEY="merlin" # (Change) your aws keypair file name sans the ".pem"
-
+KEY_LOC="/Users/andrew/git/andrewtcrooks.com/content/notebooks" # (Change) key file loc (e.g. the *.pem file)
 INSTANCE_TYPE="t2.micro" # (Optional Change) small to start with, move to bigger like c4.8xlarge when needed
-PORT="8888" # (Optional Change) the localhost port where your jupyter notebook will be served, 
-            #  cannot be your current local jupyter notebook server port
+
+PORT="8888" #  DON'T CHANGE!: the localhost port where your jupyter notebook will be served.
+            #   If your local jupyter server is already on 8888, change your local server port
+            #   to something else like 8889.
+            #  REASON: AWS automatically serves jupyter on port 8888 and you only want to have
+            #   to type 'jupyter notebook' instead of 'jupyter notebook --port:8887' after
+            #   ssh-ing into the server
 IMAGEID="ami-f1e73689" # (Don't Change) Deep Learning AMI with Conda (Ubuntu)
 COUNT="1" # (Don't Change) Number of instances to create
 REGION="us-west-2" # (Don't change if you are in Seattle!)
 USER="ubuntu" # (Don't Change)the EC2 linux user name
 UD="" # supposed to be boot script but doesn't seem to work. Solution, use AMI with everything preinstalled
 #UD="--user-data file://$HOME/scripts/aws/start.txt"
-BDM="--block-device-mappings file://mappings.json"
+BDM="--block-device-mappings file://mappings.json" 
 
 
 
@@ -155,23 +160,22 @@ echo ""
 echo "Ready to connect"
 echo ""
 echo ""
-echo "  In terminal run:"
+echo "  In a terminal run:"
 echo ""
-echo "    ssh -i merlin.pem -L $PORT:127.0.0.1:8888 $USER@$HOST"
+echo "    ssh -i $KEY_LOC/$KEY.pem -L $PORT:127.0.0.1:8888 $USER@$HOST"
 echo ""
 echo ""
-echo "  Then in terminal run:"
+echo "  Then in the same terminal run:"
 echo ""
 echo "    jupyter notebook"
 echo ""
 echo ""
-echo "  Then in local browser:"
+echo "  Then in the same terminal:"
 echo ""
-echo "    Jupyter notebook server available @ http://localhost:$PORT"
+echo "    (CMD + click) on the http://localhost:8888?token..... link"
 
 else
 
 echo "Fingerprints do not match"
 
 fi
-
