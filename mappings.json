@@ -1,0 +1,10 @@
+[
+  {
+    "DeviceName": "/dev/sda1",
+    "Ebs": {
+      "VolumeSize": 120,
+      "VolumeType": "io1",
+      "Iops": 6000
+    }
+  }
+]
