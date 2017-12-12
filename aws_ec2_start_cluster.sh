@@ -63,19 +63,19 @@ SSH_SERVER_KEY=$(aws ec2 get-console-output --instance-id $INSTANCE | sed -n 's/
 
 # Check for FINGERPRINT every ~10 seconds (9 + runtime)
 # Print "Booting..." every 60 seconds
-	if [ "$FINGERPRINTS" = "" ];then
-		sleep 9
-		i=`expr $i + 1`
-		m=`expr $i % 6`
-		if [ "$m" -ne 0 ]
-		then
-			continue
-		fi
-		n=$(( i / 6 ))
-		echo "Booting...($n min)"
-	else
-		break
-	fi
+    if [ "$FINGERPRINTS" = "" ];then
+        sleep 9
+        i=`expr $i + 1`
+        m=`expr $i % 6`
+        if [ "$m" -ne 0 ]
+        then
+            continue
+        fi
+        n=$(( i / 6 ))
+        echo "Booting...($n min)"
+    else
+        break
+    fi
 done
 echo ""
 echo "Expected fingerprints are $FINGERPRINTS"
